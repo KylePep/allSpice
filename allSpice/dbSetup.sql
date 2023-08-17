@@ -26,7 +26,19 @@ CREATE TABLE ingredients(
   name VARCHAR(255) NOT NULL,
   quantity VARCHAR(255) NOT NULL,
   recipeId INT NOT NULL,
-  FOREIGN KEY(recipeId) REFERENCES recipes(id) ON DELETE CASCADE
+  creatorId VARCHAR(255) NOT Null,
+  FOREIGN KEY(recipeId) REFERENCES recipes(id) ON DELETE CASCADE,
+  FOREIGN KEY(creatorId) REFERENCES accounts(id) ON DELETE CASCADE
+) default charset utf8 COMMENT '';
+
+CREATE TABLE favorites(
+  id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
+  createdAt DATETIME DEFAULT CURRENT_TIMESTAMP COMMENT 'Time Created',
+  updatedAt DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT 'Last Update',
+  recipeId INT NOT NULL,
+  accountId VARCHAR(255) NOT Null,
+  FOREIGN KEY(recipeId) REFERENCES recipes(id) ON DELETE CASCADE,
+  FOREIGN KEY(accountId) REFERENCES accounts(id) ON DELETE CASCADE
 ) default charset utf8 COMMENT '';
 
 DROP TABLE ingredients
@@ -34,5 +46,10 @@ DROP TABLE ingredients
 INSERT INTO recipes(title, instructions, img, category, creatorId)
 VALUES ('Hot Dogs','Microwave, Apply condements, Add bun, Eat','Valid IMG URL', 'Italian','64dd35fd2635444c1cf615ee' )
 
-INSERT INTO ingredients(name, quantity, reciepeId)
-VALUES ('Hot Dog','One Whole Cooked Weiner', 1 )
+INSERT INTO ingredients(name, quantity, recipeId, creatorId)
+VALUES ('Hot Dog','One Whole Cooked Weiner', 1, '64dd35fd2635444c1cf615ee')
+
+SELECT * FROM ingredients WHERE id = 1;
+
+INSERT INTO favorites(recipeId, accountId)
+VALUES ('1','64dd35fd2635444c1cf615ee')
