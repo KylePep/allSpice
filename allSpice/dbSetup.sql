@@ -41,7 +41,11 @@ CREATE TABLE favorites(
   FOREIGN KEY(accountId) REFERENCES accounts(id) ON DELETE CASCADE
 ) default charset utf8 COMMENT '';
 
+DROP TABLE recipes
+
 DROP TABLE ingredients
+
+DROP TABLE favorites
 
 INSERT INTO recipes(title, instructions, img, category, creatorId)
 VALUES ('Hot Dogs','Microwave, Apply condements, Add bun, Eat','Valid IMG URL', 'Italian','64dd35fd2635444c1cf615ee' )
