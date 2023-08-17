@@ -27,11 +27,11 @@ public class RecipesRepository
     {
         string sql = @"
         SELECT
-         rec.*,
-         acc.* 
-         FROM recipes rec
-         JOIN accounts acc ON acc.id = rec.creatorId
-         ;";
+        rec.*,
+        acc.* 
+        FROM recipes rec
+        JOIN accounts acc ON acc.id = rec.creatorId
+        ;";
 
         List<Recipe> recipes = _db.Query<Recipe, Profile, Recipe>(
             sql,
@@ -47,12 +47,12 @@ public class RecipesRepository
     internal Recipe GetRecipeById(int recipeId)
     {
         string sql = @"
-         SELECT
-         rec.*,
-         acc.* 
-         FROM recipes rec
-         JOIN accounts acc ON acc.id = rec.creatorId
-         WHERE rec.id = @recipeId LIMIT 1
+        SELECT
+        rec.*,
+        acc.* 
+        FROM recipes rec
+        JOIN accounts acc ON acc.id = rec.creatorId
+        WHERE rec.id = @recipeId LIMIT 1
         ;";
 
         Recipe recipe = _db.Query<Recipe, Profile, Recipe>(
