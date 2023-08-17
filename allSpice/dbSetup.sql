@@ -7,8 +7,8 @@ CREATE TABLE IF NOT EXISTS accounts(
   picture varchar(255) COMMENT 'User Picture'
 ) default charset utf8 COMMENT '';
 
-CREATE TABLE recipe(
-  id INT NOT NULL PRIMARY KEY,
+CREATE TABLE recipes(
+  id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
   createdAt DATETIME DEFAULT CURRENT_TIMESTAMP COMMENT 'Time Created',
   updatedAt DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT 'Last Update',
   title VARCHAR(255) NOT NULL,
@@ -20,3 +20,6 @@ CREATE TABLE recipe(
 ) default charset utf8 COMMENT '';
 
 DROP TABLE recipe
+
+INSERT INTO recipes(title, instructions, img, category, creatorId)
+VALUES ('Hot Dogs','Microwave, Apply condements, Add bun, Eat','Valid IMG URL', 'Italian','64dd35fd2635444c1cf615ee' )
