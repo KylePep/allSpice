@@ -12,9 +12,9 @@
         </div>
 
         <section class="row buttons bg-light fs-4 elevation-3 rounded">
-          <div class="col-4 selectable">Home</div>
-          <div class="col-4 selectable">My Recipes</div>
-          <div class="col-4 selectable">Favorites</div>
+          <div @click="filterBy = ''" class="col-4 selectable">Home</div>
+          <div @click="filterBy = 'creator'" class="col-4 selectable">My Recipes</div>
+          <div @click="filterBy = 'favorite'" class="col-4 selectable">Favorites</div>
         </section>
 
       </div>
@@ -32,10 +32,16 @@
 </template>
 
 <script>
+import { computed, ref } from "vue";
 import Login from './Login.vue';
+import { AppState } from "../AppState.js";
 export default {
   setup() {
-    return {}
+    const filterBy = ref('')
+    return {
+      filterBy,
+      filter: computed(AppState.filter = filterBy)
+    }
   },
   components: { Login }
 }

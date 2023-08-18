@@ -6,10 +6,13 @@
     <router-view />
   </main>
   <footer class="text-light">
-    <div class="new-recipe text-center mb-3 me-2 d-flex justify-content-center align-items-center">
+    <div type="button" data-bs-toggle="modal" data-bs-target="#ModalNew"
+      class="new-recipe text-center mb-3 me-2 d-flex justify-content-center align-items-center">
       <i class="mdi mdi-plus fs-2"></i>
     </div>
   </footer>
+  <ModalNew />
+  <ModalDetails />
 </template>
 
 <script>
@@ -32,8 +35,13 @@ export default {
 :root {
   --main-height: calc(100vh - 32px - 64px);
   --light-green: rgba(50, 135, 50);
+  --bg-dark-green: #527360;
   --bg-green: rgb(226, 246, 226);
 
+}
+
+.dark-bg {
+  background-color: var(--bg-dark-green);
 }
 
 body {

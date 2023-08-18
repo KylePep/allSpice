@@ -19,6 +19,7 @@ import { recipesService } from "../services/RecipesService.js"
 import { favoritesService } from "../services/FavoritesService.js"
 import { AppState } from "../AppState.js";
 import { logger } from "../utils/Logger.js";
+import { accountService } from "../services/AccountService.js";
 
 export default {
   setup() {
@@ -30,21 +31,22 @@ export default {
       }
     }
 
-    async function getMyFavorites() {
-      try {
-        await favoritesService.getMyFavorites();
-      } catch (error) {
-        Pop.error(error.message, '[HOME PAGE - GET FAVORITES]')
-      }
-    }
-
-
     onMounted(() => {
       getRecipes();
-      // getMyFavorites();
     })
     return {
-      recipes: computed(() => AppState.recipes)
+      recipes: computed(() => {
+        if (AppState.filter == '') {
+          return AppState.recipes
+        }
+        if (AppState.filter == 'creator') {
+          return AppState.recipes.filter(r => r.creator.id == AppState.account.id)
+        }
+        else {
+          return AppState.favorites
+        }
+      })
+
     }
   }
 }

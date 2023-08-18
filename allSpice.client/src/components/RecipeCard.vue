@@ -3,13 +3,14 @@
     <div class="reserved-space d-flex justify-content-between align-items-start">
       <p class="m-1 card-data px-3">{{ recipeProp.category }}</p>
       <div class="card-data favorite m-1">
-        <!-- 
-        <i v-if="!isFavorite" class="mdi mdi-heart p-1 "></i>
-        <i v-else class="mdi mdi-heart p-1 text-danger "></i> -->
+
+        <i v-if="!isFavorite" @click="toggleFavorite(1, recipeProp.id)" class="mdi mdi-heart p-1 "></i>
+        <i v-else @click="toggleFavorite(-1, recipeProp.id)" class="mdi mdi-heart p-1 text-danger "></i>
 
       </div>
     </div>
-    <div class="card-data flex-grow-1 px-2 m-2">
+    <div @click="setActiveRecipe()" type="button" data-bs-toggle="modal" data-bs-target="#ModalDetails"
+      class="card-data flex-grow-1 px-2 m-2">
       <h5>{{ recipeProp.title }}</h5>
     </div>
   </div>
@@ -19,6 +20,8 @@
 <script>
 import { computed } from "vue";
 import { AppState } from "../AppState.js";
+import Pop from "../utils/Pop.js";
+import { favoritesService } from "../services/FavoritesService.js";
 
 
 export default {
@@ -28,12 +31,30 @@ export default {
   setup(props) {
     return {
       bgImg: computed(() => `url("${props.recipeProp.img}")`),
-      // isFavorite: computed(() => {
-      //   if (AppState.favorites.find(f => f.id == props.recipeProp.id)) {
-      //     return true
-      //   }
-      //   else return false
-      // })
+
+      isFavorite: computed(() => {
+        if (AppState.favorites.find(f => f.id == props.recipeProp.id)) {
+          return true
+        }
+        else return false
+      }),
+
+      async toggleFavorite(toggle, recipeId) {
+        try {
+          if (toggle > 0) {
+            await favoritesService.createFavorite(recipeId)
+          } else {
+            let favorite = AppState.favorites.find(f => f.id == props.recipeProp.id)
+            const favoriteId = favorite.favoriteId
+            await favoritesService.deleteFavorite(favoriteId)
+          }
+        } catch (error) {
+          Pop.error(error.message, '[TOGGLE FAVORITE]')
+        }
+      },
+      setActiveRecipe() {
+        AppState.activeRecipe = props.recipeProp;
+      }
     }
   }
 }
