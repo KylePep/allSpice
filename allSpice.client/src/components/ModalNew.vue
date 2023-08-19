@@ -5,7 +5,7 @@
       <div class="modal-content container-fluid">
         <section class="row dark-bg">
           <div class="modal-header">
-            <h1 class="modal-title text-light fs-5" id="exampleModalLabel">New Recipe</h1>
+            <h1 class="modal-title text-light fs-1" id="exampleModalLabel">New Recipe</h1>
             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
           </div>
         </section>
@@ -33,7 +33,7 @@
         <section class="row">
           <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-            <button @click="createRecipe()" type="button" class="btn btn-primary">Save changes</button>
+            <button @click="createRecipe()" type="button" class="btn btn-success">Create Recipe</button>
           </div>
         </section>
       </div>

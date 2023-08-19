@@ -22,6 +22,8 @@ import { computed } from "vue";
 import { AppState } from "../AppState.js";
 import Pop from "../utils/Pop.js";
 import { favoritesService } from "../services/FavoritesService.js";
+import { ingredientService } from "../services/IngredientsService.js";
+import { recipesService } from "../services/RecipesService.js";
 
 
 export default {
@@ -29,6 +31,8 @@ export default {
     recipeProp: { type: Object, required: true }
   },
   setup(props) {
+
+
     return {
       bgImg: computed(() => `url("${props.recipeProp.img}")`),
 
@@ -54,6 +58,14 @@ export default {
       },
       setActiveRecipe() {
         AppState.activeRecipe = props.recipeProp;
+        this.getIngredientsByRecipeId()
+      },
+      async getIngredientsByRecipeId() {
+        try {
+          await recipesService.getIngredientsByRecipeId(props.recipeProp.id)
+        } catch (error) {
+          Pop.error(error.message, '[GET INGREDIENTS]')
+        }
       }
     }
   }

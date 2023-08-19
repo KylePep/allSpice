@@ -21,8 +21,10 @@
 
       <nav class="col-4  px-3 d-flex justify-content-end">
         <form class="btn-group d-flex align-items-start my-2 me-3">
-          <input class="search-start  ps-2 pb-1" type="search" placeholder="Search">
-          <button class="search-end mdi mdi-magnify" type="submit"></button>
+
+          <input v-model="editable.query" id="query" class="search-start  ps-2 pb-1" type="search" placeholder="Search">
+          <button @submit.prevent="" @click="getRecipesByQuery()" class="search-end mdi mdi-magnify"
+            type="submit"></button>
         </form>
 
         <Login />
@@ -35,12 +37,26 @@
 import { computed, ref } from "vue";
 import Login from './Login.vue';
 import { AppState } from "../AppState.js";
+import Pop from "../utils/Pop.js";
+import { recipesService } from "../services/RecipesService.js";
 export default {
   setup() {
     const filterBy = ref('')
+    const editable = ref({})
+
     return {
       filterBy,
-      filter: computed(AppState.filter = filterBy)
+      editable,
+      filter: computed(AppState.filter = filterBy),
+      async getRecipesByQuery() {
+        try {
+          const queryObject = editable.value;
+          await recipesService.getRecipesByQuery(queryObject)
+          editable.value = {}
+        } catch (error) {
+          Pop.error(error.message, '[]')
+        }
+      }
     }
   },
   components: { Login }

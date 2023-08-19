@@ -35,10 +35,10 @@ public class RecipesRepository
 
         List<Recipe> recipes = _db.Query<Recipe, Profile, Recipe>(
             sql,
-            (recipe, profile)=>
+            (recipe, profile) =>
             {
                 recipe.Creator = profile;
-                return recipe; 
+                return recipe;
             }
             ).ToList();
         return recipes;
@@ -57,12 +57,12 @@ public class RecipesRepository
 
         Recipe recipe = _db.Query<Recipe, Profile, Recipe>(
             sql,
-            (recipe, profile)=>
+            (recipe, profile) =>
             {
                 recipe.Creator = profile;
-                return recipe; 
+                return recipe;
             },
-            new { recipeId}).FirstOrDefault();
+            new { recipeId }).FirstOrDefault();
         return recipe;
     }
 
@@ -81,14 +81,15 @@ public class RecipesRepository
         ;";
 
         Recipe updatedRecipe = _db.QueryFirstOrDefault<Recipe>(sql, originalRecipe);
-        
+        updatedRecipe.Creator = originalRecipe.Creator;
+
         return updatedRecipe;
     }
 
     internal void RemoveRecipe(int recipeId)
     {
         string sql = @"DELETE FROM recipes WHERE id = @recipeId LIMIT 1;";
-        _db.Execute(sql, new{ recipeId});
+        _db.Execute(sql, new { recipeId });
     }
 }
 
