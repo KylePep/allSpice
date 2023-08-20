@@ -3,7 +3,7 @@
     <section class="row">
       <div class="col-11 mt-4 m-auto bg-recipes rounded">
         <section class="row pt-3 px-2">
-          <div v-for="recipe in recipes" :key="recipe.id" class="col-3">
+          <div v-for="recipe in recipes" :key="recipe.id" class="col-12 col-md-3">
             <RecipeCard :recipeProp="recipe" />
           </div>
         </section>
