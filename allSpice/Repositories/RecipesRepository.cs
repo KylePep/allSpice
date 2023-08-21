@@ -23,14 +23,22 @@ public class RecipesRepository
         int recipeId = _db.ExecuteScalar<int>(sql, recipeData);
         return recipeId;
     }
-    internal List<Recipe> GetRecipes()
+
+    // Recipe recipeQuery
+    // string query = $"%{recipeQuery}%";
+    // WHERE title
+    // LIKE @query
+    internal List<Recipe> GetRecipes(string recipeQuery)
     {
+        string query = $"%{recipeQuery}%";
         string sql = @"
         SELECT
         rec.*,
         acc.* 
         FROM recipes rec
         JOIN accounts acc ON acc.id = rec.creatorId
+        WHERE title 
+        LIKE @query
         ;";
 
         List<Recipe> recipes = _db.Query<Recipe, Profile, Recipe>(
@@ -39,7 +47,7 @@ public class RecipesRepository
             {
                 recipe.Creator = profile;
                 return recipe;
-            }
+            }, new { query }
             ).ToList();
         return recipes;
     }

@@ -30,7 +30,7 @@ public class IngredientsRepository
     internal Ingredient GetIngredientById(int ingredientId)
     {
         string sql = @"SELECT * FROM ingredients WHERE id = @ingredientId;";
-        Ingredient ingredient = _db.QueryFirstOrDefault<Ingredient>(sql, new {ingredientId});
+        Ingredient ingredient = _db.QueryFirstOrDefault<Ingredient>(sql, new { ingredientId });
         return ingredient;
     }
 
@@ -42,13 +42,13 @@ public class IngredientsRepository
         FROM ingredients WHERE recipeId = @recipeId;
         ;";
 
-        List<Ingredient> ingredients = _db.Query<Ingredient>(sql, new {recipeId}).ToList();
+        List<Ingredient> ingredients = _db.Query<Ingredient>(sql, new { recipeId }).ToList();
         return ingredients;
     }
 
     internal void RemoveIngredient(int ingredientId)
     {
         string sql = @"DELETE FROM ingredients WHERE id = @ingredientId LIMIT 1;";
-        _db.Execute(sql, new {ingredientId});
+        _db.Execute(sql, new { ingredientId });
     }
 }

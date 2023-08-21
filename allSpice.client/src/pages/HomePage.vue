@@ -30,6 +30,10 @@ export default {
         Pop.error(error.message, '[HOME PAGE - GET RECIPES]')
       }
     }
+    watchEffect(() => {
+      AppState.filter
+      getRecipes();
+    })
 
     onMounted(() => {
       getRecipes();
@@ -46,7 +50,6 @@ export default {
           return AppState.favorites
         }
       })
-
     }
   }
 }

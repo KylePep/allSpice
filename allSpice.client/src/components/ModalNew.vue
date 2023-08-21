@@ -12,22 +12,24 @@
         <section class="row modal-body ">
           <div class="col-8">
             <label class="form-label" for="title">Title</label>
-            <input v-model="editable.title" class="form-control" type="text" id="title">
+            <input v-model="editable.title" class="form-control" type="text" id="title" minlength="3" maxlength="255"
+              required>
           </div>
           <div class="col-4">
             <label for="category">Category</label>
-            <select v-model="editable.category" class="form-select" name="category" id="category">
+            <select v-model="editable.category" class="form-select" name="category" id="category" required>
               <option v-for="option in optionArr" :key="option" :value="option">{{ option }}</option>
             </select>
           </div>
           <div class="col-12">
             <label class="form-label" for="img">Image</label>
-            <input v-model="editable.img" class="form-control" type="text" id="img">
+            <input v-model="editable.img" class="form-control" type="text" id="img" minlength="3" maxlength="700"
+              required>
           </div>
           <div class="col-12">
             <label class="form-label" for="insturctions">Instruction</label>
             <textarea v-model="editable.instructions" class="form-control" style="resize: none;" name="title"
-              id="insturction" cols="30" rows="5"></textarea>
+              id="insturction" cols="30" rows="5" minlength="3" maxlength="1000" required></textarea>
           </div>
         </section>
         <section class="row">

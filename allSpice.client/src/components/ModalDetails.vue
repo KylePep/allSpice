@@ -68,8 +68,10 @@
                   </div>
                 </div>
                 <div v-if="edit == 'edit'" class="d-flex flex-row align-items-center">
-                  <input v-model="ingredientEditable.quantity" class="form-control" type="text" placeholder="Quantity">
-                  <input v-model="ingredientEditable.name" class="form-control" type="text" placeholder="Name">
+                  <input v-model="ingredientEditable.quantity" class="form-control" type="text" placeholder="Quantity"
+                    minlength="1" maxlength="255" required>
+                  <input v-model="ingredientEditable.name" class="form-control" type="text" placeholder="Name"
+                    minlength="1" maxlength="255" required>
                   <i @click="createIngredient()" class="mdi mdi-plus add-button fs-3"></i>
                 </div>
               </div>

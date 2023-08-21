@@ -19,6 +19,8 @@
 import { computed } from 'vue'
 import { AppState } from './AppState'
 import Navbar from './components/Navbar.vue'
+import ModalNew from "./components/ModalNew.vue"
+import ModalDetails from "./components/ModalDetails.vue"
 
 export default {
   setup() {
@@ -26,7 +28,7 @@ export default {
       appState: computed(() => AppState)
     }
   },
-  components: { Navbar }
+  components: { Navbar, ModalNew, ModalDetails }
 }
 </script>
 <style lang="scss">

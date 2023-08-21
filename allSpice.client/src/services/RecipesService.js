@@ -32,8 +32,9 @@ class RecipesService {
   }
 
   async getRecipesByQuery(queryObject) {
-    const res = await api.get(`api/recipes?query=${queryObject.query}`)
-    logger.log(`Did anything comeback?`, res.data)
+    const res = await api.get(`api/recipes?title=${queryObject.query}`)
+    const recipes = res.data.map(r => new Recipe(r));
+    AppState.recipes = recipes;
   }
 }
 export const recipesService = new RecipesService()

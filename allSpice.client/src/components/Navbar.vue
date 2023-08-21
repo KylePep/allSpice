@@ -12,7 +12,7 @@
         </div>
 
         <section class="row buttons bg-light fs-4 elevation-3 rounded">
-          <div @click="filterBy = ''" class="col-4 selectable">Home</div>
+          <div @click="getRecipes(), filterBy = ''" class="col-4 selectable">Home</div>
           <div @click="filterBy = 'creator'" class="col-4 selectable">My Recipes</div>
           <div @click="filterBy = 'favorite'" class="col-4 selectable">Favorites</div>
         </section>
@@ -56,6 +56,13 @@ export default {
         } catch (error) {
           Pop.error(error.message, '[]')
         }
+      },
+      async getRecipes() {
+        try {
+          await recipesService.getRecipes();
+        } catch (error) {
+          Pop.error(error.message, '[HOME PAGE - GET RECIPES]')
+        }
       }
     }
   },
@@ -89,7 +96,33 @@ a:hover {
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
+
 }
+
+/* .nav-bg {
+  background-image:
+    linear-gradient(black, black),
+    url('https://images.unsplash.com/photo-1509358271058-acd22cc93898?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=870&q=80');
+  background-blend-mode: saturation;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+
+} */
+
+/* .nav-bg::before {
+  content: "";
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  background-image: url('https://images.unsplash.com/photo-1509358271058-acd22cc93898?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=870&q=80');
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  filter: grayscale(1);
+} */
 
 .search-start {
   border-radius: 7px 0% 0% 7px;
