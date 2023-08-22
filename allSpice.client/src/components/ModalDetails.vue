@@ -195,6 +195,7 @@ export default {
 <style lang="scss" scoped>
 .favoriteButton {
   cursor: pointer;
+  text-shadow: 0px 0px 2px black;
 }
 
 .card-data {
