@@ -5,7 +5,7 @@
   <main>
     <router-view />
   </main>
-  <footer class="text-light">
+  <footer class="text-light position-relative">
     <div type="button" data-bs-toggle="modal" data-bs-target="#ModalNew"
       class="new-recipe text-center mb-3 me-2 d-flex justify-content-center align-items-center">
       <i class="mdi mdi-plus fs-2"></i>
