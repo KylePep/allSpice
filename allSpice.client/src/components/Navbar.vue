@@ -5,22 +5,22 @@
 
       </div>
 
-      <div class="col-4 fs-1 pt-3 text-light text-center postion-relative">
+      <div class="col-12 col-md-4 order-2 order-md-1 fs-1 pt-md-3 text-light text-center postion-relative">
         <div class="pb-5">All-Spice
           <p class="fs-4 mb-0">Cherish Your Family</p>
           <p class="fs-4 ">And Their Cooking</p>
         </div>
 
         <section class="row buttons bg-light fs-4 elevation-3 rounded">
-          <div @click="getRecipes(), filterBy = ''" class="col-4 selectable">Home</div>
-          <div @click="filterBy = 'creator'" class="col-4 selectable">My Recipes</div>
-          <div @click="filterBy = 'favorite'" class="col-4 selectable">Favorites</div>
+          <div @click="getRecipes(), filterBy = ''" class="col-12 col-md-4 selectable">Home</div>
+          <div @click="filterBy = 'creator'" class="col-12 col-md-4 selectable">My Recipes</div>
+          <div @click="filterBy = 'favorite'" class="col-12 col-md-4 selectable">Favorites</div>
         </section>
 
       </div>
 
-      <nav class="col-4  px-3 d-flex justify-content-end">
-        <form class="btn-group d-flex align-items-start my-2 me-3">
+      <nav class="col-12 col-md-4 order-1 order-md-2 px-3 d-flex justify-content-end">
+        <form class="btn-group d-flex align-items-start mt-3 my-md-2 me-3">
 
           <input v-model="editable.query" id="query" class="search-start  ps-2 pb-1" type="search" placeholder="Search">
           <button @submit.prevent="" @click="getRecipesByQuery()" class="search-end mdi mdi-magnify"
@@ -71,7 +71,7 @@ export default {
 </script>
 
 <style scoped>
-a:hover {
+/* a:hover {
   text-decoration: none;
 }
 
@@ -83,20 +83,15 @@ a:hover {
   border-bottom: 2px solid var(--bs-success);
   border-bottom-left-radius: 0;
   border-bottom-right-radius: 0;
-}
+} */
 
-@media screen and (min-width: 768px) {
-  .nav-bg {
-    height: 190px;
-  }
-}
 
 .nav-bg {
   background-image: url('https://images.unsplash.com/photo-1509358271058-acd22cc93898?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=870&q=80');
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
-
+  /* height: 190px; */
 }
 
 /* .nav-bg {
@@ -107,7 +102,7 @@ a:hover {
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
-
+  
 } */
 
 /* .nav-bg::before {
@@ -127,7 +122,7 @@ a:hover {
 .search-start {
   border-radius: 7px 0% 0% 7px;
   background-color: whitesmoke;
-  width: 16vw;
+  width: 56vw;
   border: none;
   height: 40px;
 }
@@ -137,15 +132,40 @@ a:hover {
   background-color: whitesmoke;
   border: none;
   height: 40px;
-
-
 }
 
 .buttons {
   color: var(--light-green);
   position: absolute;
-  width: 50vw;
-  left: 26%;
-  top: 88%;
+  width: 80vw;
+  left: 13%;
+  top: 76%;
+}
+
+@media screen and (min-width: 768px) {
+  .nav-bg {
+    height: 190px;
+  }
+
+  .buttons {
+    width: 50vw;
+    left: 26%;
+    top: 88%;
+  }
+
+  .search-start {
+    border-radius: 7px 0% 0% 7px;
+    background-color: whitesmoke;
+    width: 16vw;
+    border: none;
+    height: 40px;
+  }
+
+  .search-end {
+    border-radius: 0% 20% 20% 0%;
+    background-color: whitesmoke;
+    border: none;
+    height: 40px;
+  }
 }
 </style>

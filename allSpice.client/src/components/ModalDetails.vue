@@ -3,23 +3,17 @@
   <div class="modal fade" id="ModalDetails" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-xl modal-dialog-centered ">
       <div class="modal-content rounded container-fluid">
-        <!-- <section class="modal-header rounded row p-0 d">
-
-        </section> -->
         <form @submit.prevent="editRecipe()">
           <section class="modal-body rounded row p-0">
-            <div class="col-4 card-bg d-flex justify-content-end">
+            <div class="col-12 col-md-4 card-bg d-flex justify-content-end">
               <i v-if="!isFavorite" @click="toggleFavorite(1, recipe.id)"
                 class="favoriteButton mdi mdi-heart p-1 text-light fs-1"></i>
               <i v-else @click="toggleFavorite(-1, recipe.id)"
                 class="favoriteButton mdi mdi-heart p-1 text-danger fs-1"></i>
             </div>
 
-            <div class="col-8 d-flex flex-column justify-content-between">
+            <div class="col-12 col-md-8 d-flex flex-column justify-content-between">
               <!--  -->
-
-
-
               <section class="row">
                 <div class="col-12 fs-3 py-2 px-4 d-flex justify-content-between">
                   <div v-if="edit == 'edit'">
@@ -52,7 +46,7 @@
                 </div>
               </section>
               <section class="row flex-grow-1 p-3">
-                <div class="col-5 mx-auto elevation-3 p-0">
+                <div class="col-11 col-md-5 mx-auto elevation-3 p-0">
                   <div class="dark-bg text-light ps-2 fs-4">
                     Instructions
                   </div>
@@ -66,7 +60,7 @@
                 </div>
 
                 <!--  -->
-                <div class="col-5 d-flex flex-column  mx-auto elevation-3 p-0 ">
+                <div class="col-11 col-md-5 d-flex flex-column  mx-auto elevation-3 p-0 ">
                   <div class="dark-bg text-light ps-2 fs-4">
                     Ingredients
                   </div>
@@ -89,7 +83,7 @@
                 </div>
               </section>
               <section class="row justify-content-end">
-                <div class="col-6 text-end pb-2 pe-4">published by-{{ recipe.creator?.name }}</div>
+                <div class="col-12 col-md-6 text-end pb-2 pe-4">published by-{{ recipe.creator?.name }}</div>
               </section>
             </div>
           </section>
@@ -199,15 +193,6 @@ export default {
 
 
 <style lang="scss" scoped>
-.card-bg {
-  background-image: v-bind(recipeImg);
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: cover;
-  border-radius: 5px 0px 0px 5px;
-  min-height: 70vh;
-}
-
 .favoriteButton {
   cursor: pointer;
 }
@@ -227,5 +212,20 @@ export default {
   cursor: pointer;
   border: none;
   background-color: rgba(255, 255, 255, 0);
+}
+
+.card-bg {
+  background-image: v-bind(recipeImg);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  border-radius: 5px 0px 0px 5px;
+  min-height: 40vh;
+}
+
+@media screen and (min-width: 768px) {
+  .card-bg {
+    min-height: 70vh;
+  }
 }
 </style>
